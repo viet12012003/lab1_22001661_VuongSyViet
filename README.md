@@ -51,6 +51,7 @@ lab1_22001661_VuongSyViet/
 - Định nghĩa abstract class Vectorizer với methods fit(), transform(), fit_transform()
 
 **Bước 3: Triển khai Tokenizers**
+
 **src/preprocessing/simple_tokenizer.py**
 
 - Kế thừa từ Tokenizer interface
@@ -62,6 +63,7 @@ lab1_22001661_VuongSyViet/
 - Sử dụng regex pattern để tokenize
 
 **Bước 4: Triển khai Vectorizer**
+
 **src/representations/count_vectorizer.py**
 
 - Kế thừa từ Vectorizer interface
@@ -69,12 +71,14 @@ lab1_22001661_VuongSyViet/
 - Tích hợp với tokenizer
 
 **Bước 5: Tạo Dataset Loader**
+
 **src/core/dataset_loaders.py**
 
 - Triển khai function load_raw_text_data()
 - Xử lý exception và error handling
 
 **Bước 6: Testing và Validation**
+
 **test/lab1_test.py, test/lab2_test.py, main.py**
 
 - Tạo test cases cho từng component
@@ -83,9 +87,10 @@ lab1_22001661_VuongSyViet/
 ## Cách chạy code và ghi log kết quả
 
 **Chạy toàn bộ demo:** python main.py
+
 **Chạy test riêng lẻ:**
 
-- Test SimpleTokenizer: python -m test.lab1_test
+- Test SimpleTokenizer: `python -m test.lab1_test`
 - Test CountVectorizer: python -m test.lab2_test
 
 ## Ghi log kết quả chi tiết
