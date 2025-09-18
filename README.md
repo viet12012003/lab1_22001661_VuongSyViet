@@ -14,7 +14,7 @@ Dự án này triển khai các thành phần tiền xử lý văn bản cơ b�
 
 ## Cấu trúc dự án
 
-"""
+```
 lab1_22001661_VuongSyViet/
 ├── data/
 │ └── en_ewt-ud-train.txt # Dataset huấn luyện UD English-EWT
@@ -33,6 +33,7 @@ lab1_22001661_VuongSyViet/
 │ └── lab2_test.py # Test CountVectorizer
 ├── main.py # Script demo chính
 └── README.md # Tài liệu hướng dẫn
+```
 
 ## Các bước triển khai
 
