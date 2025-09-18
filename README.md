@@ -14,7 +14,8 @@ Dự án này triển khai các thành phần tiền xử lý văn bản cơ b�
 
 ### Cấu trúc dự án
 
-````lab1_22001661_VuongSyViet/
+```
+lab1_22001661_VuongSyViet/
 ├── data/
 │ └── en_ewt-ud-train.txt # Dataset huấn luyện UD English-EWT
 ├── src/
@@ -27,11 +28,11 @@ Dự án này triển khai các thành phần tiền xử lý văn bản cơ b�
 │ └── representations/
 │ └── count_vectorizer.py # Count vectorization
 ├── test/
-│ ├── **init**.py
+│ ├── __init__.py
 │ ├── lab1_test.py # Test SimpleTokenizer
 │ └── lab2_test.py # Test CountVectorizer
 ├── main.py # Script demo chính
-└── README.md # Tài liệu hướng dẫn```
+└── README.md # Tài liệu hướng dẫn
 
 ### Các bước triển khai
 
@@ -157,4 +158,4 @@ Document 3: [1, 1, 1, 0, 1, 0, 1, 1, 0, 1]
 - RegexTokenizer: Tương tự
 
 3. **CountVectorizer UD English-EWT**
-````
+```
