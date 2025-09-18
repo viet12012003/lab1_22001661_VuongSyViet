@@ -6,15 +6,15 @@ Dự án này triển khai các thành phần tiền xử lý văn bản cơ b�
 
 ## Mục lục
 
-- Cấu trúc dự án
-- Các bước triển khai
-- Cách chạy code và ghi log kết quả
-- Giải thích các kết quả thu được
-- Các khó khăn gặp phải và cách giải quyết
+- [Cấu trúc dự án](#các-bước-triển-khai)
+- [Các bước triển khai](#các-bước-triển-khai)
+- [Cách chạy code và ghi log kết quả](#cách-chạy-code-và-ghi-log-kết-quả)
+- [Giải thích các kết quả thu được](#giải-thích-các-kết-quả-thu-được)
+- [Các khó khăn gặp phải và cách giải quyết](#các-khó-khăn-gặp-phải-và-cách-giải-quyết)
 
-### Cấu trúc dự án
+## Cấu trúc dự án
 
-```
+"""
 lab1_22001661_VuongSyViet/
 ├── data/
 │ └── en_ewt-ud-train.txt # Dataset huấn luyện UD English-EWT
@@ -28,13 +28,13 @@ lab1_22001661_VuongSyViet/
 │ └── representations/
 │ └── count_vectorizer.py # Count vectorization
 ├── test/
-│ ├── __init__.py
+│ ├── **init**.py
 │ ├── lab1_test.py # Test SimpleTokenizer
 │ └── lab2_test.py # Test CountVectorizer
 ├── main.py # Script demo chính
 └── README.md # Tài liệu hướng dẫn
 
-### Các bước triển khai
+## Các bước triển khai
 
 **Bước 1: Thiết kế kiến trúc**
 
@@ -79,7 +79,7 @@ lab1_22001661_VuongSyViet/
 - Tạo test cases cho từng component
 - Validation với dataset thực tế
 
-### Cách chạy code và ghi log kết quả
+## Cách chạy code và ghi log kết quả
 
 **Chạy toàn bộ demo:** python main.py
 **Chạy test riêng lẻ:**
@@ -87,7 +87,7 @@ lab1_22001661_VuongSyViet/
 - Test SimpleTokenizer: python -m test.lab1_test
 - Test CountVectorizer: python -m test.lab2_test
 
-### Ghi log kết quả chi tiết:
+## Ghi log kết quả chi tiết
 
 **File main.py sẽ xuất ra các log sau:**
 
@@ -145,17 +145,34 @@ Document 3: [1, 1, 1, 0, 1, 0, 1, 1, 0, 1]
 
 ## Giải thích các kết quả thu được
 
-1. **Tokenization Câu Mẫu**
+1. Tokenization
 
-- SimpleTokenizer: Tách theo khoảng trắng, phân tách dấu câu (ví dụ: "Hello, world! This is a test." → ['hello', ',', 'world', '!', 'this', 'is', 'a', 'test', '.']).
-- RegexTokenizer: Trích xuất từ và dấu câu riêng (ví dụ: "Hello, world! This is a test." → ['hello', ',', 'world', '!', 'this', 'is', 'a', 'test', '.']).
+- Cả SimpleTokenizer và RegexTokenizer đều tách câu thành các token cơ bản, bao gồm cả chữ, số và dấu câu.
+- Kết quả cho thấy cả hai tokenizer hoạt động tương tự nhau trong ví dụ demo. Tuy nhiên, RegexTokenizer cho phép điều chỉnh linh hoạt hơn nhờ sử dụng biểu thức chính quy (regex), nên có thể mở rộng cho các kịch bản phức tạp hơn.
 
-2. **Tokenization UD English-EWT**
+2. Count Vectorization
 
-- Mẫu (100 ký tự đầu): Văn bản thô "American forces killed Shaikh Abdullah al-Ani, the preacher at the
-  mosque in the town of ..."
-- SimpleTokenizer: 20 token đầu:['al', '-', 'zaman', ':', 'american', 'forces', 'killed', 'shaikh', 'abdullah', 'al', '-', 'ani', ',', 'the', 'preacher', 'at', 'the', 'mosque', 'in', 'the']
-- RegexTokenizer: Tương tự
+- CountVectorizer học được từ vựng (vocabulary) từ toàn bộ tập dữ liệu, sau đó ánh xạ mỗi token về một chỉ số trong vector.
+- Với mỗi văn bản, CountVectorizer sinh ra một document-term vector biểu diễn số lần xuất hiện của từng token trong câu.
+- Ví dụ:
 
-3. **CountVectorizer UD English-EWT**
-```
+* Câu "I love NLP." → vector chứa các giá trị đếm cho 'i', 'love', 'nlp', và '.'.
+* Điều này minh họa cho mô hình Bag-of-Words: chỉ quan tâm đến tần suất xuất hiện từ, bỏ qua thứ tự.
+
+3. Kết quả với UD_English-EWT Dataset
+
+- Từ các đoạn văn bản dài hơn, tokenizer trích xuất chính xác các token bao gồm cả chữ thường, số, dấu câu.
+- CountVectorizer xây dựng được từ vựng lớn (bao gồm hàng chục từ khác nhau) và sinh vector cho từng document.
+- Điều này chứng minh pipeline từ tokenization → vectorization hoạt động tốt với dữ liệu thực tế, không chỉ trên ví dụ nhỏ.
+
+## Các khó khăn gặp phải và cách giải quyết
+
+1. Quản lý từ vựng trong CountVectorizer
+
+- Khi số lượng token lớn, dễ trùng lặp hoặc chứa token không mong muốn (ví dụ: ký tự đơn, dấu ngoặc vuông).
+- **Giải pháp:** Lọc token theo tiêu chí (loại bỏ stop words, số, hoặc từ quá ngắn) nếu cần. Trong lab này giữ nguyên để quan sát kết quả thô.
+
+2. Test và logging
+
+- Việc viết test riêng cho từng module ban đầu tốn thời gian, dễ bị lỗi import do cấu trúc thư mục.
+- **Giải pháp:** Tổ chức code theo module rõ ràng (src/, test/, main.py), sử dụng python -m để chạy test đảm bảo Python tìm đúng package.
