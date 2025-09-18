@@ -43,41 +43,37 @@ lab1_22001661_VuongSyViet/
 
 **Bước 2: Triển khai Core Interfaces**
 
-# src/core/interfaces.py
+**src/core/interfaces.py**
 
 - Định nghĩa abstract class Tokenizer với method tokenize()
 - Định nghĩa abstract class Vectorizer với methods fit(), transform(), fit_transform()
 
 **Bước 3: Triển khai Tokenizers**
-
-# src/preprocessing/simple_tokenizer.py
+**src/preprocessing/simple_tokenizer.py**
 
 - Kế thừa từ Tokenizer interface
 - Triển khai logic tokenization cơ bản
 
-# src/preprocessing/regex_tokenizer.py
+**src/preprocessing/regex_tokenizer.py**
 
 - Kế thừa từ Tokenizer interface
 - Sử dụng regex pattern để tokenize
 
 **Bước 4: Triển khai Vectorizer**
-
-# src/representations/count_vectorizer.py
+**src/representations/count_vectorizer.py**
 
 - Kế thừa từ Vectorizer interface
 - Triển khai bag-of-words representation
 - Tích hợp với tokenizer
 
 **Bước 5: Tạo Dataset Loader**
-
-# src/core/dataset_loaders.py
+**src/core/dataset_loaders.py**
 
 - Triển khai function load_raw_text_data()
 - Xử lý exception và error handling
 
 **Bước 6: Testing và Validation**
-
-# test/lab1_test.py, test/lab2_test.py, main.py
+**test/lab1_test.py, test/lab2_test.py, main.py**
 
 - Tạo test cases cho từng component
 - Validation với dataset thực tế
