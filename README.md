@@ -39,9 +39,9 @@ lab1_22001661_VuongSyViet/
 
 **Bước 1: Thiết kế kiến trúc**
 
-1. Phân tích yêu cầu: Xác định cần tokenization và vectorization
-2. Thiết kế interface: Tạo abstract base classes cho Tokenizer và Vectorizer
-3. Lập kế hoạch module: Tổ chức code theo cấu trúc rõ ràng
+1. **Phân tích yêu cầu:** Xác định cần tokenization và vectorization
+2. **Thiết kế interface:** Tạo abstract base classes cho Tokenizer và Vectorizer
+3. **Lập kế hoạch module:** Tổ chức code theo cấu trúc rõ ràng
 
 **Bước 2: Triển khai Core Interfaces**
 
@@ -86,12 +86,12 @@ lab1_22001661_VuongSyViet/
 
 ## Cách chạy code và ghi log kết quả
 
-**Chạy toàn bộ demo:** python main.py
+**Chạy toàn bộ demo:** `python main.py`
 
 **Chạy test riêng lẻ:**
 
 - Test SimpleTokenizer: `python -m test.lab1_test`
-- Test CountVectorizer: python -m test.lab2_test
+- Test CountVectorizer: `python -m test.lab2_test`
 
 ## Ghi log kết quả chi tiết
 
@@ -151,21 +151,21 @@ Document 3: [1, 1, 1, 0, 1, 0, 1, 1, 0, 1]
 
 ## Giải thích các kết quả thu được
 
-1. Tokenization
+1. **Tokenization**
 
 - Cả SimpleTokenizer và RegexTokenizer đều tách câu thành các token cơ bản, bao gồm cả chữ, số và dấu câu.
 - Kết quả cho thấy cả hai tokenizer hoạt động tương tự nhau trong ví dụ demo. Tuy nhiên, RegexTokenizer cho phép điều chỉnh linh hoạt hơn nhờ sử dụng biểu thức chính quy (regex), nên có thể mở rộng cho các kịch bản phức tạp hơn.
 
-2. Count Vectorization
+2. **Count Vectorization**
 
 - CountVectorizer học được từ vựng (vocabulary) từ toàn bộ tập dữ liệu, sau đó ánh xạ mỗi token về một chỉ số trong vector.
 - Với mỗi văn bản, CountVectorizer sinh ra một document-term vector biểu diễn số lần xuất hiện của từng token trong câu.
 - Ví dụ:
 
-* Câu "I love NLP." → vector chứa các giá trị đếm cho 'i', 'love', 'nlp', và '.'.
-* Điều này minh họa cho mô hình Bag-of-Words: chỉ quan tâm đến tần suất xuất hiện từ, bỏ qua thứ tự.
+  - Câu "I love NLP." → vector chứa các giá trị đếm cho 'i', 'love', 'nlp', và '.'.
+  - Điều này minh họa cho mô hình Bag-of-Words: chỉ quan tâm đến tần suất xuất hiện từ, bỏ qua thứ tự.
 
-3. Kết quả với UD_English-EWT Dataset
+3. **Kết quả với UD_English-EWT Dataset**
 
 - Từ các đoạn văn bản dài hơn, tokenizer trích xuất chính xác các token bao gồm cả chữ thường, số, dấu câu.
 - CountVectorizer xây dựng được từ vựng lớn (bao gồm hàng chục từ khác nhau) và sinh vector cho từng document.
@@ -173,12 +173,12 @@ Document 3: [1, 1, 1, 0, 1, 0, 1, 1, 0, 1]
 
 ## Các khó khăn gặp phải và cách giải quyết
 
-1. Quản lý từ vựng trong CountVectorizer
+1. **Quản lý từ vựng trong CountVectorizer**
 
 - Khi số lượng token lớn, dễ trùng lặp hoặc chứa token không mong muốn (ví dụ: ký tự đơn, dấu ngoặc vuông).
 - **Giải pháp:** Lọc token theo tiêu chí (loại bỏ stop words, số, hoặc từ quá ngắn) nếu cần. Trong lab này giữ nguyên để quan sát kết quả thô.
 
-2. Test và logging
+2. **Test và logging**
 
 - Việc viết test riêng cho từng module ban đầu tốn thời gian, dễ bị lỗi import do cấu trúc thư mục.
 - **Giải pháp:** Tổ chức code theo module rõ ràng (src/, test/, main.py), sử dụng python -m để chạy test đảm bảo Python tìm đúng package.
