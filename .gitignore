@@ -1,3 +1,4 @@
-data/
+data/*
 !data/description.md
+__pycache__/
 **/__pycache__/
